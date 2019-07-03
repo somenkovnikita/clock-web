@@ -4,7 +4,7 @@ function displayTime(jsonTime) {
 
 function updateTime() {
     $.ajax({
-        url: "/api",
+        url: "/api/time",
         dataType: "json",
     }).done(displayTime);
 }
