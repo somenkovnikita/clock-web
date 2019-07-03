@@ -5,17 +5,27 @@ import tornado.web
 import tornado.ioloop
 import tornado.options
 
+import settings
 import handlers.api
 import handlers.clock
+
 
 tornado.options.define("port", default=8080, help="port to listen on")
 
 
 def make_clock_web_app():
-    return tornado.web.Application([
+    handlers_ = [
         (r"/api", handlers.api.ApiHandler),
         (r"/clock", handlers.clock.ClockHandler),
-    ])
+    ]
+
+    application = tornado.web.Application(
+        handlers=handlers_,
+        template_path=settings.TEMPLATE_PATH,
+        static_path=settings.STATIC_PATH
+    )
+
+    return application
 
 
 def parst_options():
