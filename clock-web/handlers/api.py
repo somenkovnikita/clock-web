@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import tornado
 
 import json
@@ -21,4 +22,3 @@ class ApiHandler(tornado.web.RequestHandler):
         raise tornado.web.HTTPError(
             status_code=404,
             reason="Invalid method")
-
