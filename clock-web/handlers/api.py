@@ -2,17 +2,19 @@
 import tornado
 
 import json
-import time
 
 
 class ApiHandler(tornado.web.RequestHandler):
+    def initialize(self, timedb):
+        self.timedb = timedb
+
     def set_default_headers(self):
         super(ApiHandler, self).set_default_headers()
         self.set_header('Content-Type', 'application/json')
 
     def get_time(self):
         response = dict()
-        response["data"] = dict(time=time.strftime('%X %x %Z'))
+        response["data"] = dict(time=self.timedb.get_last_time())
         self.write(json.dumps(response))
 
     def get(self, method):
