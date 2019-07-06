@@ -1,3 +1,4 @@
 **/__pycache__
 timedb.txt
 .vscode
+*.pyc
