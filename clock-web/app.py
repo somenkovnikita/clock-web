@@ -32,7 +32,7 @@ def make_clock_web_app():
         static_path=settings.STATIC_PATH
     )
 
-    return application
+    return application, fake_acticity
 
 
 def parst_options():
@@ -40,11 +40,14 @@ def parst_options():
 
 
 def main():
-    app = make_clock_web_app()
+    app, fa = make_clock_web_app()
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(tornado.options.options.port)
-    tornado.ioloop.IOLoop.instance().start()
-
+    try:
+        tornado.ioloop.IOLoop.instance().start()
+    except KeyboardInterrupt:
+        tornado.ioloop.IOLoop.instance().stop()
+        fa.stop()
 
 if __name__ == "__main__":
     main()
