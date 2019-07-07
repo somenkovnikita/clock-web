@@ -23,4 +23,3 @@ class TimeDBActivityEmulator:
             self.timedb.push_time(time.strftime('%X %x %Z'))
             if not self.stop_need:
                 time.sleep(1)
-
