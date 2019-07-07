@@ -12,11 +12,15 @@ import handlers.clock
 import database.timedb
 import database.emulator
 
-tornado.options.define("port", default=8080, help="port to listen on")
+
+tornado.options.define("port", default=8080, 
+                       help="port to listen on")
+tornado.options.define("timedbpath", default="timedb.txt", 
+                       help="path to timedb")
 
 
-def make_clock_web_app():
-    timedb = database.timedb.TimeDB.load("timedb.txt")
+def make_clock_web_app(timedbpath):
+    timedb = database.timedb.TimeDB.load(timedbpath)
 
     fake_acticity = database.emulator.TimeDBActivityEmulator(timedb)
     fake_acticity.start()
@@ -35,12 +39,9 @@ def make_clock_web_app():
     return application, fake_acticity
 
 
-def parst_options():
-    tornado.options.parse_command_line()
-
-
 def main():
-    app, fa = make_clock_web_app()
+    tornado.options.parse_command_line()
+    app, fa = make_clock_web_app(tornado.options.options.timedbpath)
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(tornado.options.options.port)
     try:
