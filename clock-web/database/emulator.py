@@ -19,7 +19,7 @@ class TimeDBActivityEmulator:
         self.stop_need = True
 
     def _activity_emulate(self):
-        while self.stop_need:
+        while not self.stop_need:
             self.timedb.push_time(time.strftime('%X %x %Z'))
             if not self.stop_need:
                 time.sleep(1)
