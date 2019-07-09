@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import time
-
 class TimeDB:
     _format = "%X %x %Z"
     def __init__(self):
