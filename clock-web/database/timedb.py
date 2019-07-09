@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
+
 class TimeDB:
     _format = "%X %x %Z"
+
     def __init__(self):
         self.curtime = None
         self.db = None
