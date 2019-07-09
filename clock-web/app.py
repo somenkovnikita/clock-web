@@ -1,4 +1,4 @@
-#!/bin/python3 
+#!/bin/python3
 # -*- coding: utf-8 -*-
 
 import tornado.web
@@ -13,9 +13,9 @@ import database.timedb
 import database.emulator
 
 
-tornado.options.define("port", default=8080, 
+tornado.options.define("port", default=8080,
                        help="port to listen on")
-tornado.options.define("timedbpath", default="timedb.txt", 
+tornado.options.define("timedbpath", default="timedb.txt",
                        help="path to timedb")
 
 
